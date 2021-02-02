@@ -78,86 +78,80 @@ class ListNode:
 #             res = max(res, n - left+1)
 #         return res
 
-# class Solution:
-#     def mergeSort(self, nums, tmp, l, r):
-#         if l >= r:
-#             return 0
-#         mid = (l + r) // 2
-#         inv_count = self.mergeSort(nums, tmp, l, mid) + self.mergeSort(nums, tmp, mid + 1, r)
-#         i, j, pos = l, mid + 1, l
-#         while i <= mid and j <= r:
-#             if nums[i] <= nums[j]:
-#                 tmp[pos] = nums[i]
-#                 i += 1
-#                 inv_count += (j - (mid + 1))
-#             else:
-#                 tmp[pos] = nums[j]
-#                 j += 1
-#             pos += 1
-#         for k in range(i, mid + 1):
-#             tmp[pos] = nums[k]
-#             inv_count += (j - (mid + 1))
-#             pos += 1
-#
-#         for k in range(j, r + 1):
-#             tmp[pos] = nums[k]
-#             pos += 1
-#         nums[l:r + 1] = tmp[l:r + 1]
-#         return inv_count
-#
-#     def reversePairs(self, nums: List[int]) -> int:
-#         n = len(nums)
-#         tmp = [0] * n
-#         return self.mergeSort(nums, tmp, 0, n - 1)
-
-
-# 148. 排序链表
+# 剑指offer-51：数组中的逆序对
 class Solution:
-    def sortList(self, head: ListNode) -> ListNode:
-        def sortf(h, t):
-            if not h:
-                return None
-            if h.next == t:
-                h.next = None
-                return h
-            slow = fast = h
-            while fast != t:
-                slow = slow.next
-                fast = fast.next
-                if fast != t:
-                    fast = fast.next
-            mid = slow
-            return merge(sortf(h, mid), sortf(mid, t))
+    def mergeSort(self, nums, tmp, l, r):
+        if l >= r:
+            return 0
+        mid = (l + r) // 2
+        inv_count = self.mergeSort(nums, tmp, l, mid) + self.mergeSort(nums, tmp, mid + 1, r)
+        i, j, pos = l, mid + 1, l
+        while i <= mid and j <= r:
+            if nums[i] <= nums[j]:
+                tmp[pos] = nums[i]
+                i += 1
+                inv_count += (j - (mid + 1))
+            else:
+                tmp[pos] = nums[j]
+                j += 1
+            pos += 1
+        for k in range(i, mid + 1):
+            tmp[pos] = nums[k]
+            inv_count += (j - (mid + 1))
+            pos += 1
 
-        def merge(h1, h2):
-            x = ListNode(0)
-            d, a, b = x, h1, h2
-            while a and b:
-                if a.val > b.val:
-                    d.next = b
-                    b = b.next
-                else:
-                    d.next = a
-                    a = a.next
-                d = d.next
-            if a:
-                d.next = a
-            elif b:
-                d.next = b
-            return x.next
+        for k in range(j, r + 1):
+            tmp[pos] = nums[k]
+            pos += 1
+        nums[l:r + 1] = tmp[l:r + 1]
+        print(12345, nums[l:r+1])
+        return inv_count
 
-        return sortf(head, None)
+    def reversePairs(self, nums: List[int]) -> int:
+        n = len(nums)
+        tmp = [0] * n
+        return self.mergeSort(nums, tmp, 0, n - 1)
 
 
-# s = Solution()
-# l1 = ListNode(1)
-# l2 = ListNode(4)
-# l3 = ListNode(3)
-# l4 = ListNode(2)
-# l1.next =l2
-# l2.next =l3
-# l3.next =l4
-# print(s.sortList(l1).val)
+s = Solution()
+print(s.reversePairs([7, 5, 6, 4, 8, 3, 9, 2, 1]))
+# 148. 排序链表
+# class Solution:
+#     def sortList(self, head: ListNode) -> ListNode:
+#         def sortf(h, t):
+#             if not h:
+#                 return None
+#             if h.next == t:
+#                 h.next = None
+#                 return h
+#             slow, fast = h, h
+#             while fast != t:
+#                 slow = slow.next
+#                 fast = fast.next
+#                 if fast != t:
+#                     fast = fast.next
+#             mid = slow
+#             return merge(sortf(h, mid), sortf(mid, t))
+#
+#         def merge(h1, h2):
+#             x = ListNode(0)
+#             d, a, b = x, h1, h2
+#             while a and b:
+#                 if a.val > b.val:
+#                     d.next = b
+#                     b = b.next
+#                 else:
+#                     d.next = a
+#                     a = a.next
+#                 d = d.next
+#             if a:
+#                 d.next = a
+#             elif b:
+#                 d.next = b
+#             return x.next
+#
+#         return sortf(head, None)
+
 
 # 23. 合并K个升序链表
 # class Solution:
