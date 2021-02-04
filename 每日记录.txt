@@ -3,4 +3,5 @@
 1.29 降维完成2/3 lc正常刷
 1.30 降维完成 差总结 lc正常
 2.1 朴素贝叶斯开始 lc正常
-2.2 不lstm attention lc+1
+2.2 补lstm attention lc+1
+2.3 lc正常 回家效率极低
