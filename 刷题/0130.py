@@ -125,42 +125,63 @@ L = [8, 12, 16, 22, 100]   R = [9, 26, 55, 64, 91]  M = [8, 9]
 在数组中的两个数字，如果前面一个数字大于后面的数字，
 则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数
 """
+# class Solution:
+#     def mergeSort(self, nums, tmp, l, r):
+#         if l >= r:
+#             return 0
+#         mid = (l + r) // 2
+#         inv_count = self.mergeSort(nums, tmp, l, mid) + self.mergeSort(nums, tmp, mid + 1, r)
+#         i, j, pos = l, mid + 1, l
+#         while i <= mid and j <= r:
+#             if nums[i] <= nums[j]:
+#                 tmp[pos] = nums[i]
+#                 i += 1
+#                 inv_count += (j - (mid + 1))
+#             else:
+#                 tmp[pos] = nums[j]
+#                 j += 1
+#             pos += 1
+#         for k in range(i, mid + 1):
+#             tmp[pos] = nums[k]
+#             inv_count += (j - (mid + 1))
+#             pos += 1
+#
+#         for k in range(j, r + 1):
+#             tmp[pos] = nums[k]
+#             pos += 1
+#         nums[l:r + 1] = tmp[l:r + 1]
+#         print(12345, nums[l:r+1])
+#         return inv_count
+#
+#     def reversePairs(self, nums: List[int]) -> int:
+#         n = len(nums)
+#         tmp = [0] * n
+#         return self.mergeSort(nums, tmp, 0, n - 1)
 class Solution:
-    def mergeSort(self, nums, tmp, l, r):
-        if l >= r:
-            return 0
-        mid = (l + r) // 2
-        inv_count = self.mergeSort(nums, tmp, l, mid) + self.mergeSort(nums, tmp, mid + 1, r)
-        i, j, pos = l, mid + 1, l
-        while i <= mid and j <= r:
-            if nums[i] <= nums[j]:
-                tmp[pos] = nums[i]
-                i += 1
-                inv_count += (j - (mid + 1))
-            else:
-                tmp[pos] = nums[j]
-                j += 1
-            pos += 1
-        for k in range(i, mid + 1):
-            tmp[pos] = nums[k]
-            inv_count += (j - (mid + 1))
-            pos += 1
-
-        for k in range(j, r + 1):
-            tmp[pos] = nums[k]
-            pos += 1
-        nums[l:r + 1] = tmp[l:r + 1]
-        print(12345, nums[l:r+1])
-        return inv_count
-
     def reversePairs(self, nums: List[int]) -> int:
         n = len(nums)
-        tmp = [0] * n
-        return self.mergeSort(nums, tmp, 0, n - 1)
+        if n <= 1:
+            return 0
+        mid = n // 2
+        left = nums[:mid]
+        right = nums[mid:]
+        result = self.reversePairs(left) + self.reversePairs(right)
+
+        # union left and right
+        left.sort()
+        right.sort()
+        index = 0
+        for j in range(len(right)):
+            while index < len(left) and left[index] <= right[j]:
+                index += 1
+            result += (len(left) - index)
+        return result
+
 
 s = Solution()
 # print(s.reversePairs([7, 5, 6, 4, 8, 3, 9, 2]))
 print(s.reversePairs([7, 5, 6, 4]))
+# print(s.reversePairs([7, 5]))
 # 148. 排序链表
 # class Solution:
 #     def sortList(self, head: ListNode) -> ListNode:
