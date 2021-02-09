@@ -179,8 +179,8 @@ class Solution:
 
 
 s = Solution()
-# print(s.reversePairs([7, 5, 6, 4, 8, 3, 9, 2]))
-print(s.reversePairs([7, 5, 6, 4]))
+print(s.reversePairs([7, 5, 6, 4, 8, 3, 9, 2]))
+# print(s.reversePairs([7, 5, 6, 4]))
 # print(s.reversePairs([7, 5]))
 # 148. 排序链表
 # class Solution:
