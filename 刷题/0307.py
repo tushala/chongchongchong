@@ -72,6 +72,7 @@ class ListNode:
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 """
 
+
 # class Solution:
 #     def minCut(self, s: str) -> int:
 #         length = len(s)
@@ -91,27 +92,6 @@ class ListNode:
 
 
 # 86
-"""
-给你一个链表的头节点 head 和一个特定值 x ，请你对链表进行分隔，使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前。
-
-你应当 保留 两个分区中每个节点的初始相对位置。
-
- 
-
-示例 1：
-
-
-输入：head = [1,4,3,2,5,2], x = 3
-输出：[1,2,2,4,3,5]
-示例 2：
-
-输入：head = [2,1], x = 2
-输出：[1,2]
- 
-
-提示：
-
-"""
 
 
 class Solution:
@@ -132,29 +112,3 @@ class Solution:
                 node2.next = None
         node1.next = dh2.next
         return dh1.next
-
-
-s = Solution()
-
-l1 = ListNode(1)
-l2 = ListNode(4)
-l3 = ListNode(3)
-l4 = ListNode(2)
-l5 = ListNode(5)
-l6 = ListNode(2)
-l1.next = l2
-l2.next = l3
-l3.next = l4
-l4.next = l5
-l5.next = l6
-# r = s.partition(l1, 3)
-# while r:
-#     print(r.val, end='\t')
-#     r = r.next
-
-from collections import namedtuple
-
-Point = namedtuple('Point', ['x', 'y'])
-d = {'x': 4, 'y': 5}
-p = Point(**d)
-print(p)

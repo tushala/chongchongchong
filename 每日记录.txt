@@ -31,3 +31,4 @@
 3.2 lc + 1 transformer 1/4
 3.3-4 lc 正常， 项目，trans 3/4
 3.6-3.8 lc -1 项目 松懈
+3.9-10 lc正常 项目bug
