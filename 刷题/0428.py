@@ -117,14 +117,3 @@ class AllSortSolution:
         ...
 
 
-# w = list(range(6, 0, -1))
-w = [5, 2, 6, 0, 3, 9, 1, 7, 4, 8]
-# s = AllSortSolution()
-#
-# s.shellinsertSort(w)
-# print(w)
-import heapq
-heapq.heapify(w)
-print(w)
-for i in range(len(w)):
-    print(heapq.heappop(w))
