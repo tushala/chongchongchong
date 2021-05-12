@@ -75,9 +75,7 @@ class Solution:
         return nums[0]
 
 
-s = Solution()
-print(s.findKthLargest([3, 2, 1, 5, 6, 4], k=2))
-print(s.findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], k=4))
+
 
 # 无重复字符的最长子串
 # class Solution:
