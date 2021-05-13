@@ -186,5 +186,3 @@ from typing import *
 #             return None
 #         root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
 #         return root
-s = Solution()
-print(s.isValid("()"))
